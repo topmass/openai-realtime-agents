@@ -1,16 +1,16 @@
-import authentication from "./authentication";
+import listener from "./listener";
 import returns from "./returns";
 import sales from "./sales";
 import simulatedHuman from "./simulatedHuman";
 import { injectTransferTools } from "../utils";
 
-authentication.downstreamAgents = [returns, sales, simulatedHuman];
-returns.downstreamAgents = [authentication, sales, simulatedHuman];
-sales.downstreamAgents = [authentication, returns, simulatedHuman];
-simulatedHuman.downstreamAgents = [authentication, returns, sales];
+listener.downstreamAgents = [returns, sales, simulatedHuman];
+returns.downstreamAgents = [listener, sales, simulatedHuman];
+sales.downstreamAgents = [listener, returns, simulatedHuman];
+simulatedHuman.downstreamAgents = [listener, returns, sales];
 
 const agents = injectTransferTools([
-  authentication,
+  listener,
   returns,
   sales,
   simulatedHuman,
